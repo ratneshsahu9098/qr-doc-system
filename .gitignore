@@ -1,0 +1,10 @@
+node_modules/
+.env
+*.db
+uploads/
+files/
+credentials.json
+token.json
+__pycache__/
+*.pyc
+frontend/dist/
