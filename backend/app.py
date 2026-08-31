@@ -25,6 +25,16 @@ def create_app(config_name=None):
     with app.app_context():
         db.create_all()
 
+        from backend.models.user import User
+        if not User.query.first():
+            from werkzeug.security import generate_password_hash
+            admin = User(
+                username='admin',
+                password=generate_password_hash('admin123')
+            )
+            db.session.add(admin)
+            db.session.commit()
+
     from backend.routes.auth import auth_bp
     from backend.routes.documents import documents_bp
     from backend.routes.qr import qr_bp
